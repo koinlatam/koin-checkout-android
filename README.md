@@ -76,8 +76,12 @@ class YourApplication : Application() {
         val config = PaymentCheckoutConfig.Builder(key = "YOUR_PRIVATE_API_KEY")
             .primaryColor("#008f21")      // Optional: Your brand's primary color
             .secondaryColor("#004E1D")    // Optional: Your brand's secondary color
-            .currencyCode("BRL")          // Set the default currency
-            .isHomolog(true)              // Use `true` for testing, `false` for production
+            .currencyCode("BRL")          // Optional: Set the default currency
+            .pollingInterval(2000L)       // Optional: polling interval (default: 3000ms)
+            .pollingTimeout(360000L)      // Optional: polling timeout (default: 360000ms)
+            .enableLogs(true)             // Optional: enable logs (default: false)
+            .isHomolog(true)              // Optional: Use `true` for testing, `false` for production
+            .maxRetries(3)                // Optional: enable automatic retry on requests (default: 0)
             .build()
 
         KoinPaymentCheckout.initialize(config)
